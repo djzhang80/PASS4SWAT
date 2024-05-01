@@ -5,7 +5,8 @@ metadata:
 spec:
   containers:
     - name: swat-container
-      image: jannyarj/base:1.0
+      image: jannyarj/swat:1.1
+      #image: jannyarj/swat:1.0
       command: ["/bin/bash", "/model/declare_queue.sh"]
       #keep containner alive
       #command: ["tail"]

@@ -11,7 +11,8 @@ spec:
     spec:
       containers:
         - name: swat
-          image: jannyarj/base:1.0
+          image: jannyarj/swat:1.1
+          #image: jannyarj/swat:1.0
           command: ["/bin/bash", "/model/model_simulation.sh"]
           volumeMounts:
             - mountPath: /model

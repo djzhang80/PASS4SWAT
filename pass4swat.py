@@ -80,7 +80,7 @@ replace_in_file(script_dir+"/rabbitmq-initializer.yaml.tpl",path_to_your_project
 run_command("SUFI2_LH_sample.exe < SUFI2.IN/response_to_SUFI2_LH_sample.txt")
 scount = get_simulation_number(script_dir+"/SUFI2.IN/par_inf.txt")
 
-arguments = {'path_to_your_project': project_path, 'scount': str(scount), 'pcount': str(pcount),'mount_path_in_container':'/model','execution_script':'/model/model_simulation.sh','execution_image':'jannyarj/base:1.0'}
+arguments = {'path_to_your_project': project_path, 'scount': str(scount), 'pcount': str(pcount),'mount_path_in_container':'/model','execution_script':'/model/model_simulation.sh','execution_image':'jannyarj/swat:1.1'}
 replace_in_file(script_dir+"/model-paralllel-simulation-job.yaml.tpl",**arguments)
 
 
