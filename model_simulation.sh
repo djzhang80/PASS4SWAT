@@ -1,16 +1,22 @@
+
 #! /bin/bash
- 
-FN=$(amqp-consume --url="$BROKER_URL" -q foo -c 1)
+mkdir /wspace
+cp -r /model/* /wspace
+#ls /wspace >>/model/mylog.txt
+FN=$(amqp-consume --url="amqp://guest:guest@rabbitmq-service:5672" -q taskqueue -c 1 cat)
 
-cp /var/local/input/$FN /swat/model.in
+echo $FN >> /model/mylog20.txt
 
-cd /swat
+cp /wspace/parameter/$FN /wspace/model.in
+
+cd /wspace
  
-mono /swat/swat_edit.exe
+mono /wspace/Swat_Edit.exe
 
 chmod 700 swat.out 
 
 ./swat.out 
 
-awk -v RNO="$RNO" -v VNO="$VNO" -v FN="$FN" '/^REACH *'"$RNO"'/ {print $VNO}' output.rch > /var/local/output/$FN
+
+cp /wspace/output.rch /model/output.rch.$FN
 

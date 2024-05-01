@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-swat
+spec:
+  completions: 8
+  parallelism: 4
+  template:
+    metadata:
+      name: job-pod
+    spec:
+      containers:
+        - name: swat
+          image: jannyarj/base:1.0
+          command: ["/bin/bash", "/model/model_simulation.sh"]
+          volumeMounts:
+            - mountPath: /model
+              name: model
+      volumes:
+        - name: model
+          hostPath:
+            path: /run/desktop/mnt/host/d/docker/version2/project
+            type: Directory
+      restartPolicy: OnFailure
